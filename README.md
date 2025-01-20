@@ -1,9 +1,9 @@
 # cob-eda
 
-## "올림픽" 발언 횟수 출
+## 역대 대통령  "올림픽" 발언 횟수 출력
 
-```bash력
-$ from cob_eda import group_by_count
+```bash
+$ from cob_eda.cli import group_by_count
 $ group_by_count()
 ```
 
