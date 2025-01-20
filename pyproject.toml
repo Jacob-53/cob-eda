@@ -1,6 +1,6 @@
 [project]
 name = "cob-eda"
-version = "0.1.0"
+version = "0.3.0"
 description = "COB-EDA is a Python package designed to simplify exploratory data analysis with intuitive tools for statistics, visualizations, and insights discovery.."
 authors = [
     {name = "jacob-53", email = "jacob8753@gmail.com"},
