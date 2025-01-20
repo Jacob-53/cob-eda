@@ -25,3 +25,8 @@ eda = [
 test = [
     "pytest>=8.3.4",
 ]
+
+
+[project.scripts]
+cob-eda = "cob_eda.cli:group_by_count"
+
