@@ -22,7 +22,7 @@ def psearch_by_count():
             print("일치하는 값이 없습니다")
             continue 
 
-def group_by_count(keyword: str,asorde: bool,howmany: int ):
+def group_by_count(keyword: str,asorde: bool,howmany: int):
     # TODO: ascending, 출력 rows size 이들의 변수 고려
     # pytest 코드 작성해보기
     # import this <- 해석해보세요
@@ -30,9 +30,14 @@ def group_by_count(keyword: str,asorde: bool,howmany: int ):
     df = pd.read_parquet(data_path)
     f_df = df[df['speech_text'].str.contains(keyword, case=False)]
     rdf = f_df.groupby("president").size().reset_index(name="count")
-    sdf = rdf.sort_values(by='count', ascending=asorde).reset_index(drop=True).head(howmany)
-    print(sdf.to_string(index=False))
-    print(sdf.size)
+    sdf = rdf.sort_values(by='count', ascending=asorde).reset_index(drop=True)
+    rdf = sdf.head(howmany)
+    return rdf
+
+def print_group_by_count(keyword: str,asorde: bool,howmany: int):
+    rdf=group_by_count(keyword,asorde,howmany)
+    print(rdf.to_string(index=False))
+
 
 def entry_point():
-    typer.run(group_by_count)
+    typer.run(print_group_by_count)
