@@ -28,5 +28,5 @@ test = [
 
 
 [project.scripts]
-cob-eda = "cob_eda.cli:group_by_count"
+cob-eda = "cob_eda.cli:entry_point"
 
