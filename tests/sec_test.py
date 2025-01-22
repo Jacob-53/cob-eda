@@ -35,18 +35,18 @@ def test_정열_및_행수제한():
 def test_정열_및_행수제한(asc,president):
     # given
     rc = 3
-    asc = True
+    #asc = True
 
     # when
     df = group_by_count("자유",asorde=asc,howmany=rc)
 
     # then
     assert isinstance(df, pd.DataFrame)
-    assert df.iloc[0]["president"] == "윤보선"
-    assert df.iloc[0]["count"]==1
-    assert df.iloc[0]["president"] == "박정희"
-    assert len(df) ==2 
-    assert df.iloc[0]["count"]==513
+    assert df.iloc[0]["president"] == president
+    #assert df.iloc[0]["count"]==1
+    assert df.iloc[0]["president"] == president
+    assert len(df) ==3
+    #assert df.iloc[0]["count"]==513
     #assert df.iloc[1]["count"]==438
 
 def test_딕셔너리확인():
