@@ -1,6 +1,6 @@
 # cob-eda
 
-## 입력한 단어별 역대 대통령  발언 횟수 출력 by Typer
+## 입력한 단어별 역대 대통령  발언 횟수 출력 with Typer
 
 
 ```bash
@@ -20,7 +20,7 @@ $ cob-eda 1번 2번 3번
 - **EX) group_by_count("경제", False, 5) => 경제 발언 최다 상위 5명 출력** 
 
 
-## 입력한 단어별 역대 대통령  발언 횟수 출력 by input
+## 입력한 단어별 역대 대통령  발언 횟수 출력 with input
 
 ```bash
 $ from cob_eda.cli import psearch_by_count
