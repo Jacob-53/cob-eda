@@ -41,3 +41,16 @@ def print_group_by_count(keyword: str,asorde: bool,howmany: int):
 
 def entry_point():
     typer.run(print_group_by_count)
+
+
+#def add_keyword_count(keyword: str,asorde: bool,howmany: int):
+   # data_path = get_parquet_full_path()
+   # df = pd.read_parquet(data_path)
+   # df['keyword_count'] = df['speech_text'].str.count(keyword)
+   # adf=df.groupby("president").agg(count=("speech_text", "size"),keyword_sum=("keyword_count", "sum"))
+   # fdf=adf.sort_values(by=["keyword_sum", "count"], ascending=[False, False])
+   # sdf=fdf.groupby("president")["keyword_count"].sum().reset_index()
+   # return sdf
+
+#def entry_point_kc():
+   # typer.run(add_keyword_count)
