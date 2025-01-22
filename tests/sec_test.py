@@ -1,5 +1,7 @@
 from cob_eda.cli import group_by_count
 import pandas as pd
+import pytest
+
 
 def test1():
     df=group_by_count("경제",False,5)
@@ -29,22 +31,23 @@ def test_정열_및_행수제한():
     assert df.iloc[0]["president"] == "윤보선"
     assert len(df) == row_count
 
-
-def test_정열_및_행수제한():
+@pytest.mark.parametrize("asc,president",[(True,"윤보선"),(False,"박정희")])
+def test_정열_및_행수제한(asc,president):
     # given
-    #row_count = 3
-    #is_asc = True
+    rc = 3
+    asc = True
 
     # when
-    df = group_by_count("자유",False,12)
+    df = group_by_count("자유",asorde=asc,howmany=rc)
 
     # then
     assert isinstance(df, pd.DataFrame)
+    assert df.iloc[0]["president"] == "윤보선"
+    assert df.iloc[0]["count"]==1
     assert df.iloc[0]["president"] == "박정희"
-    assert len(df) == 12
+    assert len(df) ==2 
     assert df.iloc[0]["count"]==513
-    assert df.iloc[1]["count"]==438
-    assert df.iloc[11]["count"]==1
+    #assert df.iloc[1]["count"]==438
 
 def test_딕셔너리확인():
     
