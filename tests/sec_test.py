@@ -1,4 +1,5 @@
 from cob_eda.cli import group_by_count
+from cob_eda.cli import group_by_count_akc
 import pandas as pd
 import pytest
 
@@ -82,3 +83,60 @@ def test_all_count():
     for p_name,s_count in presidents_speeche.items():
         president_row = df[df["president"] == p_name]
         assert president_row.iloc[0]["count"]== s_count
+
+
+def test_all_count_enum_iat():
+    #given
+    #global presidents_speeche
+
+    #when
+    df = group_by_count("자유",False,12)
+
+    #then
+    assert isinstance(df,pd.DataFrame)
+    assert len(df) == 12
+
+    for i,(p_name,s_count) in enumerate(presidents_speeche.items()):
+        assert df.iat[i,1] == s_count
+
+
+
+
+def test_all_count_keywordsum():
+    # given
+    # global dict
+
+    # when
+    df = group_by_count_akc(keyword="자유",
+                        keyword_sum=True
+                        )
+    
+    # then
+    assert isinstance(df, pd.DataFrame)
+    assert "keyword_sum" in df.columns
+
+    # TRY - keyword_sum 이 count 보다 항상 크거나 같음
+    # 1
+    assert all(df["keyword_sum"] >= df["count"])
+    # 모든 쌍 컬럼 쌍으로 비교 , all- 내장함수임 각 쌍들의 비교가 assert 한대로 맞다면 True 리턴 아님 False 
+    # 2
+    for row in df.itertuples():
+        assert row.keyword_sum >= row.count
+
+    # 3 - 열의 순서를 알고 있고 위치 기반으로 다루고 싶을 때.
+    for i in range(len(df)):
+        keyword_sum = df.iloc[i, df.columns.get_loc("keyword_sum")]
+        count = df.iloc[i, df.columns.get_loc("count")]
+        assert keyword_sum >= count
+
+    # 4
+    for i in range(len(df)):
+        keyword_sum = df.loc[i, "keyword_sum"]
+        count = df.loc[i, "count"]
+        assert keyword_sum >= count
+
+    # 4
+    for i in range(len(df)):
+        keyword_sum = df.iat[i, 2]  # 첫 번째 열 (0번 인덱스)
+        count = df.iat[i, 1]        # 두 번째 열 (1번 인덱스)
+        assert keyword_sum >= count
