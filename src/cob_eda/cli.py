@@ -3,6 +3,9 @@ import pandas as pd
 import typer
 import time
 from tqdm import tqdm
+from tabulate import tabulate
+import termplotlib as tpl
+
 
 def psearch_by_count():
     data_path = get_parquet_full_path()
@@ -38,9 +41,11 @@ def group_by_count(keyword: str,asorde: bool,howmany: int):
 def print_group_by_count(keyword: str,asorde: bool,howmany: int):
     rdf=group_by_count(keyword,asorde,howmany)
     for i in tqdm(range(len(rdf.columns)*len(rdf.index))):
-        pass
-    time.sleep(2)
-    print(rdf.to_string(index=False))
+        time.sleep(0.1)
+    hd=["president","count"]
+    
+    t=tabulate(rdf,headers=hd,tablefmt='github',showindex=False)
+    print(t)
 
 
 def entry_point():
@@ -78,10 +83,19 @@ def print_group_by_count_akc(keyword: str, asorde: bool=False, howmany: int=12, 
     df = group_by_count_akc(keyword, asorde, howmany, keyword_sum)
     #프로그레스바 추가 해보기 - df 컬럼 숫자 * row 숫자 + sleep
     for i in tqdm(range(len(df.columns)*len(df.index))):
-        pass
-    time.sleep(2) 
-    print(df.to_string(index=False))
+        time.sleep(0.1)
+    hd=["president","count"]
+    if keyword_sum:
+        hd.append("keyword sum")
+    t=tabulate(df,headers=hd,tablefmt='github',showindex=False)
+    print(t)
+    fig = tpl.figure()
 
+    ## TODO - keyword_sum 옵션이 활성회 돠면 keyword_sum 들어가게 하기
+   # if keyword_sum:
+
+    fig.barh(df['count'], df['president'], force_ascii=True)
+    fig.show()
 
 def entry_point_akc():
     typer.run(print_group_by_count_akc)
