@@ -9,7 +9,7 @@ Ex) $ cob-eda-akc 자유 --no-asorde --howmay 3 --keyword-sum
 
 - 1번: 찾을키워드 입력
 - 2번: --no-asorde (내림차순), --asorde(오름차순) ;기본값임
-- 3번: --howmany 정수 (상위' 정수'명 을 출력 할 것인지)
+- 3번: --howmany 정수 (상위 또는 하위의 '정수'명 을 출력 설정)
 - 4번: --keyword-sum
 
 - 예시 설명: 자유 총 발언횟수 상위 3명 출력
@@ -24,7 +24,7 @@ $ from cob_eda.cli import group_by_count
 $ group_by_count()
 ----------------------------------------
 $ cob-eda 1번 2번 3번
-
+Ex) $ cob-eda 자유 False 5
 
 ```
 
@@ -33,6 +33,8 @@ $ cob-eda 1번 2번 3번
 - 2번 입력: 내림차순:"False", 오름차순:"True" //**둘 중 한가지만 입력해야 합니다.**
 - 3번 입력: 상위 혹은 하위 몇 명 조회 할 것인지에 대한 정수입력
 - **EX) group_by_count("경제", False, 5) => 경제 발언 최다 상위 5명 출력** 
+
+- **EX) cob-eda 자유 False 5 => 경제 발언 최다 상위 5명 출력**
 
 
 ## 입력한 단어별 역대 대통령  발언 횟수 출력 with input

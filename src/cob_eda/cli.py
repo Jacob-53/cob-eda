@@ -1,7 +1,8 @@
 from president_speech.db.parquet_interpreter import read_parquet, get_parquet_full_path
 import pandas as pd
 import typer
-
+import time
+from tqdm import tqdm
 
 def psearch_by_count():
     data_path = get_parquet_full_path()
@@ -36,6 +37,9 @@ def group_by_count(keyword: str,asorde: bool,howmany: int):
 
 def print_group_by_count(keyword: str,asorde: bool,howmany: int):
     rdf=group_by_count(keyword,asorde,howmany)
+    for i in tqdm(range(len(rdf.columns)*len(rdf.index))):
+        pass
+    time.sleep(2)
     print(rdf.to_string(index=False))
 
 
@@ -72,6 +76,10 @@ def group_by_count_akc(keyword: str, asorde: bool=False, howmany: int=12, keywor
 
 def print_group_by_count_akc(keyword: str, asorde: bool=False, howmany: int=12, keyword_sum: bool=False):
     df = group_by_count_akc(keyword, asorde, howmany, keyword_sum)
+    #프로그레스바 추가 해보기 - df 컬럼 숫자 * row 숫자 + sleep
+    for i in tqdm(range(len(df.columns)*len(df.index))):
+        pass
+    time.sleep(2) 
     print(df.to_string(index=False))
 
 
