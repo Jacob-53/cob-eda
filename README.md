@@ -4,7 +4,7 @@
 ``` bash
 $ cob-eda-akc 1번 2번 3번 4번
 
-Ex) $ cob-eda-akc 자유 --no-asorde --howmay 3 --keyword-sum 
+Ex) $ cob-eda-akc 자유 --no-asorde --howmany 3 --keyword-sum 
 ```
 
 - 1번: 찾을키워드 입력
