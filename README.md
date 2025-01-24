@@ -1,5 +1,20 @@
 # cob-eda
 
+## 입력한 단어별 역대 대통령 연설 중 총  발언 횟수 출력 with Typer
+``` bash
+$ cob-eda-akc 1번 2번 3번 4번
+
+Ex) $ cob-eda-akc 자유 --no-asorde --howmay 3 --keyword-sum 
+```
+
+- 1번: 찾을키워드 입력
+- 2번: --no-asorde (내림차순), --asorde(오름차순) ;기본값임
+- 3번: --howmany 정수 (상위' 정수'명 을 출력 할 것인지)
+- 4번: --keyword-sum
+
+- 예시 설명: 자유 총 발언횟수 상위 3명 출력
+
+
 ## 입력한 단어별 역대 대통령  발언 횟수 출력 with Typer
 
 
