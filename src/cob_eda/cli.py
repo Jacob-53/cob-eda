@@ -4,7 +4,7 @@ import typer
 import time
 from tqdm import tqdm
 from tabulate import tabulate
-
+import termplotlib as tpl
 
 
 def psearch_by_count():
@@ -89,7 +89,13 @@ def print_group_by_count_akc(keyword: str, asorde: bool=False, howmany: int=12, 
         hd.append("keyword sum")
     t=tabulate(df,headers=hd,tablefmt='github',showindex=False)
     print(t)
+    fig = tpl.figure()
 
+    ## TODO - keyword_sum 옵션이 활성회 돠면 keyword_sum 들어가게 하기
+   # if keyword_sum:
+
+    fig.barh(df['count'], df['president'], force_ascii=True)
+    fig.show()
 
 def entry_point_akc():
     typer.run(print_group_by_count_akc)
